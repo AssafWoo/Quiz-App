@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { calculateScore } from "../Utils/CalculateScore/calculateScore";
+import { calculateScore } from "../Utils/calculateScore";
 import { QuizContext } from "../Context/QuizContext";
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import { LightBlue } from "../Styles/Colors";

@@ -1,4 +1,4 @@
-import { Question } from '../../Context/QuizContext';
+import { Question } from '../Context/QuizContext';
 
 export const calculateScore = (userAnswers: { [key: number]: number }, questions: Question[]): number => {
     if (!questions) return 0;

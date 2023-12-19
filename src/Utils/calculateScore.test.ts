@@ -1,5 +1,5 @@
 import { calculateScore } from './calculateScore';
-import { Question } from '../../Context/QuizContext';
+import { Question } from '../Context/QuizContext';
 
 describe('calculateScore', () => {
   const questions: Question[] = [
