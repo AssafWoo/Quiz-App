@@ -8,7 +8,7 @@ interface QuestionComponentProps {
     question: string;
     answers: string[];
   };
-  selectedAnswer: number;
+  selectedAnswer: number | null;
   onAnswerSelect: (answerIndex: number) => void;
 }
 
@@ -19,7 +19,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
 }) => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "question",
-    value: selectedAnswer.toString(),
+    value: selectedAnswer !== null ? selectedAnswer.toString() : '',
     onChange: (value) => onAnswerSelect(parseInt(value)),
   });
 

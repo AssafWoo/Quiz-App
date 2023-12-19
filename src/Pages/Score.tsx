@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { calculateScore } from "../Utils/calculateScore";
-import { QuizContext } from "../Context/QuizContext";
+import { Question, QuizContext } from "../Context/QuizContext";
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import { LightBlue } from "../Styles/Colors";
 import Confetti from "react-confetti";
@@ -16,12 +16,25 @@ const Score: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [showConfetti, setShowConfetti] = useState(false);
 
+  const processAnswersAndCalculateScore = (
+    userAnswers: { [key: number]: number | null },
+    quizData: Question[]
+  ) => {
+    const filteredAnswers = Object.entries(userAnswers)
+      .filter(([_, answer]) => answer !== null)
+      .reduce((acc, [key, value]) => ({ ...acc, [parseInt(key)]: value }), {});
+    return calculateScore(filteredAnswers, quizData);
+  };
+
   useEffect(() => {
     if (quizContext) {
       const { userAnswers, quizData } = quizContext;
-      const calculatedScore = calculateScore(userAnswers, quizData);
-      setFinalScore(calculatedScore);
+      const calculatedScore = processAnswersAndCalculateScore(
+        userAnswers,
+        quizData
+      );
 
+      setFinalScore(calculatedScore);
       const timer = setTimeout(() => {
         setLoading(false);
         if (calculatedScore >= 80) {

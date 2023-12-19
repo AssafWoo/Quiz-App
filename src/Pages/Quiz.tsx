@@ -17,18 +17,14 @@ const Quiz: React.FC = () => {
   const navigate = useNavigate();
   const currentQuestionIndex = parseInt(id ?? "1", 10) - 1;
   const [localUserAnswers, setLocalUserAnswers] = useState<{
-    [key: number]: number;
+    [key: number]: number | null;
   }>({});
 
   useEffect(() => {
     const quizLength = quizContext?.quizData?.length ?? 0;
-    if (quizLength > 0) {
-      const defaultAnswers = Object.fromEntries(
-        new Array(quizLength).fill(0).map((_, index) => [index, 0])
-      );
-      setLocalUserAnswers(defaultAnswers);
-    }
+    setLocalUserAnswers(Array.from({ length: quizLength }, () => null));
   }, [quizContext?.quizData]);
+
 
   const handleAnswerSelect = useCallback(
     (answerIndex: number) => {
@@ -68,7 +64,7 @@ const Quiz: React.FC = () => {
       <Flex direction="column" align="center" justify="center">
         <QuestionComponent
           question={quizData[currentQuestionIndex]}
-          selectedAnswer={localUserAnswers[currentQuestionIndex] ?? 0}
+          selectedAnswer={localUserAnswers[currentQuestionIndex] ?? null}
           onAnswerSelect={handleAnswerSelect}
         />
 
@@ -106,7 +102,7 @@ const Quiz: React.FC = () => {
               colorScheme={
                 currentQuestionIndex === quizData.length - 1 ? "green" : "blue"
               }
-              isDisabled={localUserAnswers[currentQuestionIndex] === undefined}
+              isDisabled={localUserAnswers[currentQuestionIndex] === null}
             >
               {currentQuestionIndex === quizData.length - 1 ? "Submit" : "Next"}
             </Button>

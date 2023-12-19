@@ -3,9 +3,9 @@ import questions from "../Data/questions.json";
 
 export interface QuizContextType {
   quizData: Question[];
-  userAnswers: { [key: number]: number };
+  userAnswers: { [key: number]: number | null };
   setUserAnswers: React.Dispatch<
-    React.SetStateAction<{ [key: number]: number }>
+    React.SetStateAction<{ [key: number]: number | null }>
   >;
 }
 
@@ -25,7 +25,7 @@ export const QuizContext = createContext<QuizContextType | undefined>(
 
 export const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
   const [quizData, setQuizData] = useState<Question[]>([]);
-  const [userAnswers, setUserAnswers] = useState<{ [key: number]: number }>({});
+  const [userAnswers, setUserAnswers] = useState<{ [key: number]: number | null }>({});
 
   useEffect(() => {
     setQuizData(questions);
