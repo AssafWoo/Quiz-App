@@ -1,0 +1,27 @@
+[
+  {
+    "question": "What is the largest planet in our solar system?",
+    "answers": ["Saturn", "Neptune","Jupiter", "Earth"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "question": "How long does it take for light from the Sun to reach Earth?",
+    "answers": ["8 minutes", "8 hours", "1 day", "1 second"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "Which planet is known as the 'Red Planet'?",
+    "answers": [ "Venus", "Jupiter", "Mercury","Mars"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "question": "What is the most common type of star found in the Milky Way?",
+    "answers": ["Red giant stars","Red dwarf stars", "Neutron stars", "White dwarf stars"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "question": "Which planet has the most moons?",
+    "answers": ["Earth", "Jupiter", "Mars", "Saturn"],
+    "correctAnswerIndex": 3
+  }
+]
